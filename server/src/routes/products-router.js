@@ -16,7 +16,35 @@ router.post("/products/create", async(req,res)=>{
 
 router.get('/products',async(req,res)=>{
     const products = await Products.find()
-	res.send(products)
+    res.json(products)
+    
+//     const page=parseInt(req.query.page) ;
+//     const limit=parseInt(req.query.limit)
+
+//     const startIndex = (page-1)*limit
+//     const endIndex =page*limit
+
+    
+//     const results= {}
+   
+   
+//  if(endIndex<products.length){
+
+//      results.next= {
+//          page:page+1,
+//          limit:limit
+//      }
+//  }
+
+//     if(startIndex>0){
+//     results.prev= {
+//         page:page-1,
+//         limit:limit
+//     }
+// }
+//     results.results= products.slice(startIndex,endIndex)
+//     res.json(results )
+   
 })
 
 router.get('/products/:id', (req, res,next) => {

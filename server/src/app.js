@@ -1,34 +1,33 @@
-const express= require('express')
-require("./db.js")
-const ueserRouters = require('./routes/user-router')
-const productRouter= require("./routes/products-router")
-const shippingAddressRouter= require("./routes/shipping-router")
-const app= express()
-const cors= require('Cors')
+const express = require("express");
 
+const ueserRouters = require("./routes/user-router");
+const productRouter = require("./routes/products-router");
+const shippingAddressRouter = require("./routes/shipping-router");
+const app = express();
+const cors = require("cors");
+require("dotenv").config();
 
-app.use(cors())
-app.use(express.json())
+const connect = require("./configs/db");
 
-app.use(productRouter)
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use("", productRouter);
+app.use("", ueserRouters);
+app.use("", shippingAddressRouter);
 
-app.use(ueserRouters)
+app.use("/", (req, res) => {
+  res.json({ message: "Hello" });
+});
 
-app.use(shippingAddressRouter)
+const port = process.env.PORT || 3000;
 
-
-
-// app.listen(8000, async () => {
-//     try {
-//       await connect();
-//       console.log("listening on port 8000");
-//     } catch (err) {
-//       console.error(err.message);
-//     }
-    
-//   });
-const port=8000||process.env.PORT;
-
-app.listen(port, ()=>{
-  console.log(`listening on port ${port}`)
-})
+app.listen(port, async function () {
+  try {
+    await connect();
+    console.log(`listening on port ${port}`);
+  } catch (err) {
+    console.log(err);
+  }
+});

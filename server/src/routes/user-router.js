@@ -21,6 +21,7 @@ router.post("/user/login", async(req, res)=>{
     try{
         const user= await User.findByCredentials(req.body.email, req.body.password)
         const token= await user.generateAuthToken()
+        // const user= await User.findByCredentials(req.body.email, req.body.password, req.body.token)
         res.status(200).send({user,token})
     }catch(e){
         res.status(500).send(e)
@@ -35,7 +36,7 @@ try{
       return token.token!==token
         
       })
-      await user.save()
+      await User.save()
         res.status(200).send({message:"user logged out Successfully"})
 }catch(e){
     res.status(500).send(e)
