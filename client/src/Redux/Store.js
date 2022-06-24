@@ -7,6 +7,7 @@ import { registerReducer } from "./Register/reducer";
 import { loginReducer } from "./Login/reducer";
 
 
+
 const composeEnhancers =
   typeof window === 'object' &&
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
@@ -20,11 +21,12 @@ const enhancer = composeEnhancers(
     // other store enhancers if any
   );
   const rootReducer=combineReducers ({
-    listing: listingReducer,
+    // listing: listingReducer,
     cartReducer,
     shippingReducer,
     registerReducer,
     loginReducer,
+   
 
 })
 export const store = createStore(rootReducer, enhancer);

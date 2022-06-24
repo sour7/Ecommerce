@@ -1,36 +1,24 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { shippingAdd } from "../Redux/Checkout/action";
 // import { Link } from 'react-router-dom';
 import { Shipping } from "./Shipping";
 
 export const Checkout = () => {
   const tot = localStorage.getItem("total");
-  //  console.log(tot)
+  
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
 
+  const add = useSelector((state) => state.shippingReducer)
+  // console.log(add)
+
   const dispatch = useDispatch();
 
-  const handleAddress = () => {
-    const payload = {
-      firstname,
-      lastname,
-      phone,
-      email,
-      address,
-    };
-    dispatch(shippingAdd(payload));
-    alert("address added");
-    setFirstname("");
-    setLastname("");
-    setPhone("");
-    setEmail("");
-    setAddress("");
-  };
+  
   const handleContinue = () => {
     const payload = {
       firstname,
@@ -97,21 +85,22 @@ export const Checkout = () => {
             onChange={(e) => setAddress(e.target.value)}
           ></textarea>
         </div>
+        
+        <div className="d-flex justify-content-end">
+          <button
+            type="button"
+            className="btn btn-success "
+            style={{ marginRight: "18px" }}
+            onClick={handleContinue}
+          >
+            ADD
+          </button>
+        </div>
         <div
           className="p-3 pb-0"
           style={{ height: "200px", overflow: "scroll" }}
         >
           <Shipping />
-        </div>
-        <div className="d-flex justify-content-end">
-          <button
-            type="button"
-            className="btn btn-success "
-            style={{ marginRight: "5px" }}
-            onClick={handleContinue}
-          >
-            CONTINUE
-          </button>
         </div>
       </div>
     </div>

@@ -1,20 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../Redux/Login/action.js";
 
+import styled from "styled-components";
+
+const Container = styled.div`
+  /* position: fixed;
+  z-index: 2000;
+  background-color: white; */
+  width: 100%;
+  height: fit-content;
+ 
+`;
 
 export const Navbar = () => {
+  const dispatch = useDispatch();
   const state = useSelector((state) => state.cartReducer);
-  const { isAuthenticated } = useSelector((state) => state.loginReducer)
-
-
-
-
+  const { isAuthenticated } = useSelector((state) => state.loginReducer);
 
 
   return (
     <div>
+    <Container>
       <nav className="navbar navbar-expand-lg navbar-light bg-whilte py-3 shadow-sm">
         <div className="container">
           <Link
@@ -53,7 +61,7 @@ export const Navbar = () => {
                 </Link>
               </li> */}
               <li className="nav-item">
-                <Link to="/products" className="nav-link">
+                <Link to="/" className="nav-link">
                   Products
                 </Link>
               </li>
@@ -69,18 +77,37 @@ export const Navbar = () => {
               </li>
             </ul>
 
-            <div className="buttons">
-              <Link to="/signin" className="btn btn-outline-dark  ms-2">
-                <i className="fa fa-sign-in me-1" > Login</i>
+            <div className="buttons d-flex">
+              <div>
+                {!isAuthenticated ? (
+                  <div>
+                    <Link to="/signin" className="btn btn-outline-dark  ms-2">
+                      <i className="fa fa-sign-in me-1"> Login</i>
+                    </Link>
 
-              </Link>
-
-              <Link to="/register" className="btn btn-outline-dark  ms-2">
-                <i className="fa fa-user-plus me-1 "> Sign Up</i>
-              </Link>
+                    <Link to="/register" className="btn btn-outline-dark  ms-2">
+                      <i className="fa fa-user-plus me-1 "> Sign Up</i>
+                    </Link>
+                  </div>
+                ) : (
+                  <div>
+                    <button className="btn btn-outline-dark  ms-2">
+                    <i className="fa fa-box-arrow-right"
+                        onClick={() => {
+                          dispatch(logout());
+                        }}
+                      >
+                        {" "}
+                        Logout
+                       
+                      </i>
+                      <img src="https://img.icons8.com/windows/32/000000/exit.png" style={{"width":"20px","marginLeft":"5px"}}/>
+                    </button>
+                  </div>
+                )}
+              </div>
               <Link to="/cart" className="btn btn-outline-dark  ms-2">
                 <i className="fa fa-shopping-cart me-2">
-                  {" "}
                   Cart ({state.length})
                 </i>
               </Link>
@@ -88,6 +115,7 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
+    </Container>
     </div>
   );
 };

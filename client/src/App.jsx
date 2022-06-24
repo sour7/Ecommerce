@@ -15,6 +15,10 @@ import { Login } from "./components/Login";
 
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {Contect} from "./components/Contect";
+import { About } from "./components/About";
+import {Footer} from "./components/Footer"
+
 
 
 const PrivateRoute = ({ isAuthenticated, children }) => {
@@ -44,8 +48,13 @@ function App() {
         <Route path="/address/:id" element={<Payment />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/signin" element={<Login />}></Route>
+        <Route path="/contect" element={<Contect />}></Route>
+        <Route path="/about" element={<About />}></Route>
+      
+
     
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

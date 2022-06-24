@@ -1,4 +1,4 @@
-import {LOGIN_LOADING,LOGIN_SUCCESS, LOGIN_FAILURE}  from "./action"
+import {LOGIN_LOADING,LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT}  from "./action"
 
 const initState= {
     loading:false,
@@ -15,6 +15,7 @@ export const loginReducer= (store= initState, {type, payload})=>{
                 ...store,
                 loading:true,
                 isAuthenticated:false,
+                error:false
             }
             case LOGIN_SUCCESS:
                 return{
@@ -34,6 +35,10 @@ export const loginReducer= (store= initState, {type, payload})=>{
                         token:"",
                         email:""
                     }
+                    case LOGOUT:
+                       return {
+                            ...initState
+                        }
 
                  
                     default:

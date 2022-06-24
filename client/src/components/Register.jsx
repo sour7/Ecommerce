@@ -2,13 +2,14 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+  const navigate= useNavigate()
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -17,7 +18,7 @@ export const Register = () => {
 
     axios({
       method: "POST",
-      url: "http://127.0.0.1:8000/user/register",
+      url: "https://sourabh-server.herokuapp.com/user/register",
       headers: {
         "Content-Type": "application/json",
       },
@@ -31,6 +32,7 @@ export const Register = () => {
         setName("");
         setEmail("");
         setPassword("");
+        navigate('/signin')
       })
       .catch((e) => {
         alert("authentication failed");

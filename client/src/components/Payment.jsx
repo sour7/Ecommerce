@@ -2,11 +2,18 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+
+
 export const Payment = () => {
   const [cardholdername, setCardholdername] = useState("");
   const [cardnumber, setCardnumber] = useState("");
   const [validity, setValidity] = useState("");
   const [cvv, setCvv] = useState("");
+  const dispatch = useDispatch();
+const navigate= useNavigate()
 
   const total = localStorage.getItem("total");
 
@@ -14,7 +21,7 @@ export const Payment = () => {
   const [details, setDetails] = useState({});
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/myaddress/${id}`, {
+    fetch(`https://sourabh-server.herokuapp.com/myaddress/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +32,7 @@ export const Payment = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const handlepayment = () => {
+  function handlepayment (){
     if (
       cardholdername == "saurav" &&
       cardnumber == "987654321" &&
@@ -33,15 +40,22 @@ export const Payment = () => {
       cvv == "203"
     ) {
       alert("Order placed successfully");
+      navigate("/") ;
+    
+      
     } else {
       alert("wrong card details");
     }
+
+    
 
     setCardholdername("");
     setCardnumber("");
     setValidity("");
     setCvv("");
+    
   };
+ 
 
   return (
     <div>
@@ -107,7 +121,12 @@ export const Payment = () => {
             <button
               type="button"
               className="btn btn-success"
-              onClick={handlepayment}
+              onClick={()=>{
+                handlepayment()
+              
+              
+                
+              }}
             >
               PAY Rs.{total}
             </button>

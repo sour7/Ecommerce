@@ -2,6 +2,7 @@
 export const LOGIN_LOADING= 'LOGIN_LOADING';
 export const LOGIN_SUCCESS= 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE= 'LOGIN_FAILURE';
+export const LOGOUT= 'LOGOUT'
 
 
 // ACTION CREATOR
@@ -17,21 +18,22 @@ export const loginSuccess=(payload)=>({
 export const loginFailure=()=>({
     type:LOGIN_FAILURE
 })
+export const logout=()=>({
+    type:LOGOUT
+})
 
 
+export const login = (payload)=>(dispatch)=>{
 
-export const login = ({email, password})=>(dispatch)=>{
     dispatch(loginLoading())
-    fetch(`http://127.0.0.1:8000/user/login`,{
-        method:"POST",
-        body:JSON.stringify({email, password}),
-        headers:{
-            "Content-Type":"application/json"
-        }
-       
-    }) .then((res)=> res.json())
-    .then((res)=> dispatch(loginSuccess({email, token: res.token})))
-    .catch((e)=> dispatch(loginFailure()))
+fetch (`https://sourabh-server.herokuapp.com/user/login`,{
+  method:"POST",
+  body: JSON.stringify(payload),
+   headers: { 'Content-Type': 'application/json' },
+  
+})  .then(response => response.json())
+.then(data => dispatch(loginSuccess({ email:data.user.email, token:data.token})))
 
+.catch((err) =>dispatch(loginFailure(err)));
 
 }

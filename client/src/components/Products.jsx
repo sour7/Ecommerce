@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from "react-router-dom"
+import { useParams } from 'react-router-dom';
 
 
 export const Products = () => {
@@ -10,10 +11,11 @@ export const Products = () => {
 
 
 
+
     useEffect(() => {
         const getProducts = async () => {
             setLoading(true);
-            const response = await fetch("http://127.0.0.1:8000/products")
+            const response = await fetch("https://sourabh-server.herokuapp.com/products")
             if (componentMounted) {
 
                 setData(await response.clone().json());

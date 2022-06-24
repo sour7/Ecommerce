@@ -1,13 +1,13 @@
 import { LOADING_SHIPPING_ADDRESS,SHIPPING_ADDRESS } from "./action";
 
-const initState= {
+const initState={
+
     loading:false,
     firstname:"",
     lastname:"",
     phone:"",
     email:"",
     address:"",
-    
 
 }
 
@@ -22,6 +22,7 @@ export const shippingReducer = (store= initState,{type, payload})=>{
             case SHIPPING_ADDRESS:
                 return{
                     ...store,
+                    loading:false,
                    firstname:payload.firstname,
                    lastname:payload.lastname,
                    phone:payload.phone,

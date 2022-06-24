@@ -20,7 +20,7 @@ export const registerReducer = (store= initState,{type, payload})=>{
             case SUCCESS_REGISTER:
                 return{
                     ...store,
-                      name:payload.tname,
+                      name:payload.name,
                    email:payload.email,
                    password:payload.password
                  }

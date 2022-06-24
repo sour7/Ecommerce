@@ -23,7 +23,7 @@ export const listingFailure=()=>({
 
 export const listing= ({title,price, category, image })=>(dispatch)=>{
     dispatch(listingLoading())
-    fetch(`http://127.0.0.1:8000/products/create`,{
+    fetch(`https://sourabh-server.herokuapp.com/products/create`,{
         method:"POST",
         body:JSON.stringify({title,price, category, image }),
         headers:{

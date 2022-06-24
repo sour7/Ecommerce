@@ -23,7 +23,7 @@ export const failedRegister=()=>({
 
 export const register= ({name,email, password})=>(dispatch)=>{
     dispatch(loadingRegister())
-    fetch(`http://127.0.0.1:8000/user/register`,{
+    fetch(`https://sourabh-server.herokuapp.com/user/register`,{
         method:"POST",
         body:JSON.stringify({name,email, password}),
         headers:{

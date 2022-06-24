@@ -1,8 +1,11 @@
-import {ADDITEM, DELETEITEM} from './action'
+import {ADDITEM, DELETEITEM, CLEAR_CART} from './action'
 
 
 
-   const cart=[]
+
+        const cart=[]
+
+  
 
 
 export const cartReducer = (store = cart,action)=>{
@@ -22,14 +25,17 @@ export const cartReducer = (store = cart,action)=>{
 
             case DELETEITEM:
                 const exist1= store.find((x)=>x._id==product._id)
-                if(exist1.qty==1){
+                if(exist1.qty>0){
                     return store.filter((x)=>x._id!=exist1._id)
-                }else{
-                    return store.map((x)=>
-                    x.id==product._id? {...x, qty:x.qty-1}:x
-                    );
                 }
-                
+
+                case CLEAR_CART:
+                    return {
+                        ...cart,
+                        
+                       
+                    }
+
                 default:
                    return store
                    
