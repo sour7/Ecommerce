@@ -1,3 +1,5 @@
+deployed link: https://candymart.netlify.app/
+
 ![Screenshot (1133)](https://user-images.githubusercontent.com/95950369/172141540-a72c5f01-47cb-4a63-8c78-9199981bc93d.png)
 ![Screenshot (1134)](https://user-images.githubusercontent.com/95950369/172141558-6b6d0683-ecf2-44cf-82de-f81414ed08d7.png)
 ![Screenshot (1137)](https://user-images.githubusercontent.com/95950369/172141591-fe7a3524-7451-42ef-bd4c-970cfea1fe1d.png)
