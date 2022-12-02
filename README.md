@@ -1,6 +1,6 @@
 deployed link: https://candymart.netlify.app/
 </br>
-backend : https://sourabh-server.herokuapp.com/
+backend : https://shy-pink-panda-slip.cyclic.app/products
 
 ![Screenshot (1133)](https://user-images.githubusercontent.com/95950369/172141540-a72c5f01-47cb-4a63-8c78-9199981bc93d.png)
 ![Screenshot (1134)](https://user-images.githubusercontent.com/95950369/172141558-6b6d0683-ecf2-44cf-82de-f81414ed08d7.png)
